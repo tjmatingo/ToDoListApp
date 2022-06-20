@@ -8,7 +8,7 @@ from .models import Todo
 def home(response):
     todo_items = Todo.objects.all().order_by('-added_date')
     length_of_todos = Todo.objects.all().count()
-    return render(response, 'users/home.html', {'todo_items': todo_items, 'length_of_todos': length_of_todos})
+    return render(response, 'users/index.html', {'todo_items': todo_items, 'length_of_todos': length_of_todos})
 
 def add_todo(response):
     current_date = timezone.now()
