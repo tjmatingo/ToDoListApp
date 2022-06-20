@@ -1,42 +1,54 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Add Item</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    </head>
 
-{% block title %}
-    <title>Add Item</title>
-{% endblock %}
-
-{% block content %}
-    <br>
-    <br>
-    <div class="row justify-content-center">
-            <div class="col-md-8">
-                <h1 class="text-center">Add Item</h1>
-                <p class="fs-5 text-uppercase" style="text-align:left; color: purple;">there are {{length_of_todos}} items</p>
-                <hr>
-                <form action="/add/" class="form-inline" method="post">
-                    {% csrf_token %}
-                    <input type="text" class="form-control mb-2 mr-sm-2" name="content" placeholder="type here..." required=True>
-                    <button type="submit" class="btn btn-primary mb-2">Submit</button>
-                </form>
+    <body>
+        <nav class="navbar navbar-dark bg-success">
+            <div class="container-fluid">
+                <a class="navbar-brand" href=""><h3>To Do List App</h3></a>
             </div>
-    </div>
-    <br>
-    <br>
-    <br>
-    <div class="row justify-content-center">
-        <div class="col-md-7">
-            <ul class="list-group">
-                {% for todo_item in todo_items %}
-                    <li class="list-group-item">
-                        {{todo_item}}
-                        <div class="float-end">
-                            <form action="delete/{{todo_item.id}}" method="post">
-                                {% csrf_token %}
-                                <button type="submit" class="btn btn-sm btn-danger">DELETE</button>
-                            </form>
-                        </div>
-                    </li>
-                {% endfor %}
-            </ul>
+        </nav>
+        <div class="container">
+            <br>
+	    <br>
+	    <div class="row justify-content-center">
+		    <div class="col-md-8">
+		        <h1 class="text-center">Add Item</h1>
+		        <p class="fs-5 text-uppercase" style="text-align:left; color: purple;">there are {{length_of_todos}} items</p>
+		        <hr>
+		        <form action="/add/" class="form-inline" method="post">
+		            {% csrf_token %}
+		            <input type="text" class="form-control mb-2 mr-sm-2" name="content" placeholder="type here..." required=True>
+		            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+		        </form>
+		    </div>
+	    </div>
+	    <br>
+	    <br>
+	    <br>
+	    <div class="row justify-content-center">
+		<div class="col-md-7">
+		    <ul class="list-group">
+		        {% for todo_item in todo_items %}
+		            <li class="list-group-item">
+		                {{todo_item}}
+		                <div class="float-end">
+		                    <form action="delete/{{todo_item.id}}" method="post">
+		                        {% csrf_token %}
+		                        <button type="submit" class="btn btn-sm btn-danger">DELETE</button>
+		                    </form>
+		                </div>
+		            </li>
+		        {% endfor %}
+		    </ul>
+		</div>
+	    </div>
         </div>
-    </div>
-{% endblock %}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    </body>
+</html>
